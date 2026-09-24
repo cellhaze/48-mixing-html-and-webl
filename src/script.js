@@ -2,6 +2,7 @@ import * as THREE from 'three'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js'
 import { gsap } from 'gsap'
+import { element } from 'three/tsl'
 
 /**
  * Loaders
@@ -43,7 +44,10 @@ const debugObject = {}
 // Canvas
 const canvas = document.querySelector('canvas.webgl')
 
-// Scene
+// Sc.point .label
+{
+    
+}
 const scene = new THREE.Scene()
 
 /**
@@ -128,6 +132,16 @@ gltfLoader.load(
 )
 
 /**
+ * Points
+ */
+const points = [
+    {
+        position: new THREE.Vector3(1.55, 0.3, - 0.6),
+        element: document.querySelector('.point-0')
+    }
+]
+
+/**
  * Lights
  */
 const directionalLight = new THREE.DirectionalLight('#ffffff', 3)
@@ -194,6 +208,15 @@ const tick = () =>
 {
     // Update controls
     controls.update()
+
+    // Go through each point
+    for (const point of points)
+    {
+        const screenPosition= point.position.clone()
+        screenPosition.project(camera)
+
+        // console.log(screenPosition.x)
+    }
 
     // Render
     renderer.render(scene, camera)
