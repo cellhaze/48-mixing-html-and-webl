@@ -86,11 +86,11 @@ body
     font-weight: 100;
     font-size: 14px;
     opacity: 0;
+    transition: opacity 0.3s;
+    pointer-events: none;
 }
 
 .point:hover .text 
 {
     opacity: 1;
-    transition: opacity 0.3s;
-    pointer-events: none;
 }
